@@ -1,0 +1,75 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    #boton-instagram {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #efd5e8;
+      color: rgb(14, 1, 1);
+      border: none;
+      border-radius: 8px;
+      z-index: 10;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Botón que redirige a Instagram -->
+  <button id="boton-instagram">✨ Más como esto ✨</button>
+
+  <a-scene
+    mindar-image="imageTargetSrc:src/targets.mind; missTolerance: 15"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+
+    <a-assets>
+      <a-asset-item id="Animacion3" src="src/cucaracha.glb"></a-asset-item>
+      <audio id="audioRA" src="src/Jarabe.mp3"></audio>
+    </a-assets>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Anchor principal -->
+
+    <a-entity id="anchor3" mindar-image-target="targetIndex: 0">
+      <a-gltf-model
+        id="modelo-temp"
+        src="#Animacion3"
+        rotation="0 0 0"
+        position="0 0 0"
+        scale="0.3 0.3 0.3"
+        animation-mixer>
+      </a-gltf-model>
+    </a-entity>
+  </a-scene>
+  <!-- Script de sonido -->
+  <script>
+    const anchor = document.querySelector('#anchor3');
+    const audio = document.querySelector('#audioRA');
+
+    anchor.addEventListener('targetFound', () => audio.play());
+    anchor.addEventListener('targetLost', () => {
+      audio.pause();
+      audio.currentTime = 0; // reinicia al inicio
+    });
+
+    // Redirección del botón
+    document.getElementById('boton-instagram').addEventListener('click', () => {
+      window.open('https://www.instagram.com/altera.ar/', '_blank');
+    });
+  </script>
+</body>
+</html>
