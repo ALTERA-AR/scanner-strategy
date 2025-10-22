@@ -27,17 +27,17 @@
   </style>
 </head>
 <body>
-  <!-- Botón que redirige a Instagram -->
-  <button id="boton-instagram">✨Más como esto✨</button>
-
+  <!-- Botón que redirige a Instagram 
+  <button id="boton-instagram">✨ Más como esto ✨</button>
+-->
   <a-scene
     mindar-image="imageTargetSrc:src/targets.mind; missTolerance: 15"
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
     <a-assets>
-      <a-asset-item id="Animacion3" src="src/cucaracha.glb"></a-asset-item>
-      <audio id="audioRA" src="src/Jarabe.mp3"></audio>
+      <a-asset-item id="Animacion3" src="src/DOG2.glb"></a-asset-item>
+     <!-- <audio id="audioRA" src="src/Jarabe.mp3"></audio>-->
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -50,7 +50,7 @@
         src="#Animacion3"
         rotation="0 0 0"
         position="0 0 0"
-        scale="0.3 0.3 0.3"
+        scale="0.6 0.6 0.6"
         animation-mixer>
       </a-gltf-model>
     </a-entity>
@@ -73,4 +73,3 @@
   </script>
 </body>
 </html>
-
